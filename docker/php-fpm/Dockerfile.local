@@ -32,8 +32,8 @@ RUN install-php-extensions curl
 RUN install-php-extensions imap
 RUN install-php-extensions xml
 
-COPY --chown=www:www-data .docker/php-fpm/php.ini /usr/local/etc/php/php.ini
-COPY --chown=www:www-data .docker/php-fpm/www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY --chown=www:www-data docker/php-fpm/php.ini /usr/local/etc/php/php.ini
+COPY --chown=www:www-data docker/php-fpm/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 WORKDIR /var/www/html
 
