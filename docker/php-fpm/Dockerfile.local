@@ -3,10 +3,12 @@ FROM php:8.2-fpm
 # Add user for laravel application
 RUN useradd -u 1000 -ms /bin/bash -g www-data www
 
-
 #Install dependencies
 RUN apt-get update
-RUN apt-get install -y software-properties-common build-essential ca-certificates libpng-dev libjpeg62-turbo-dev libfreetype6-dev locales zip jpegoptim optipng pngquant gifsicle unzip git curl lua-zlib-dev libmemcached-dev libbz2-dev alien libaio1 wget
+RUN apt-get install -y software-properties-common build-essential ca-certificates \
+    libpng-dev libjpeg62-turbo-dev libfreetype6-dev locales zip jpegoptim optipng \
+    pngquant gifsicle unzip git curl lua-zlib-dev libmemcached-dev libbz2-dev alien \
+    libaio1 wget libpq-dev
 
 #Repositorio
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -31,6 +33,9 @@ RUN install-php-extensions pcov
 RUN install-php-extensions curl
 RUN install-php-extensions imap
 RUN install-php-extensions xml
+RUN install-php-extensions pgsql
+RUN install-php-extensions pdo_pgsql
+RUN install-php-extensions gmp
 
 COPY --chown=www:www-data docker/php-fpm/php.ini /usr/local/etc/php/php.ini
 COPY --chown=www:www-data docker/php-fpm/www.conf /usr/local/etc/php-fpm.d/www.conf

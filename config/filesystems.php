@@ -60,6 +60,20 @@ return [
             'report' => false,
         ],
 
+        'minio' => [
+            'driver' => 's3',
+            'key' => env('MINIO_KEY', 'minio'),
+            'secret' => env('MINIO_SECRET', 'minio123'),
+            'region' => env('MINIO_REGION', 'us-east-1'),
+            'bucket' => env('MINIO_BUCKET', 'fotos-pessoas'),
+            'url' => env('MINIO_URL', 'http://localhost:9000'),
+            'endpoint' => env('MINIO_ENDPOINT', 'http://minio:9000'),
+            'use_path_style_endpoint' => true, // Necessário para o MinIO
+            'throw' => false,
+            'report' => false,
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*
